@@ -1,0 +1,39 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+////设置maven deployer
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //设置插件的GAV参数
+//            pom.groupId = 'com.onemt.plugin'
+//            pom.artifactId = 'dellog'
+//            pom.version = '1.0.0'
+//            //文件发布到下面目录
+//            repository(url: uri('../repo'))
+//        }
+//    }
+//}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.onemt.plugin'
+            artifactId = 'dellog'
+            version = '1.0.0'
+
+            from components.java
+        }
+    }
+}
